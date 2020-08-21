@@ -79,3 +79,15 @@ export const isRedirect = (status: number) => status >= 300 && status < 400;
 export const isClientError = (status: number) => status >= 400 && status < 500;
 
 export const isServerError = (status: number) => status >= 500 && status < 600;
+
+export enum Method {
+  GET = 'GET',
+  HEAD = 'HEAD',
+  POST = 'POST',
+  PUT = 'PUT',
+  DELETE = 'DELETE',
+  CONNECT = 'CONNECT',
+  OPTIONS = 'OPTIONS',
+  TRACE = 'TRACE',
+  PATCH = 'PATCH',
+}

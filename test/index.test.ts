@@ -5,7 +5,8 @@ import {
   isRedirect,
   isClientError,
   isServerError,
-} from '../src';
+  Method,
+} from '../dist';
 
 type Test = [
   Status,
@@ -115,21 +116,39 @@ const tests: Test[] = [
 tests.map(
   ([status, [informational, success, redirect, clientError, serverError]]) => {
     describe(`[${status}]`, () => {
-      it('[isInformational]', () => {
+      it(`isInformational |> ${informational}`, () => {
         expect(isInformational(status)).toEqual(informational);
       });
-      it('[isSuccess]', () => {
+      it(`isSuccess |> ${success}`, () => {
         expect(isSuccess(status)).toEqual(success);
       });
-      it('[isRedirect]', () => {
+      it(`isRedirect |> ${redirect}`, () => {
         expect(isRedirect(status)).toEqual(redirect);
       });
-      it('[isClientError]', () => {
+      it(`isClientError |> ${clientError}`, () => {
         expect(isClientError(status)).toEqual(clientError);
       });
-      it('[isServerError]', () => {
+      it(`isServerError |> ${serverError}`, () => {
         expect(isServerError(status)).toEqual(serverError);
       });
     });
   }
 );
+
+describe('[Method]', () => {
+  it('Should contain all the HTTP methods', () => {
+    expect(Method).toMatchInlineSnapshot(`
+      Object {
+        "CONNECT": "CONNECT",
+        "DELETE": "DELETE",
+        "GET": "GET",
+        "HEAD": "HEAD",
+        "OPTIONS": "OPTIONS",
+        "PATCH": "PATCH",
+        "POST": "POST",
+        "PUT": "PUT",
+        "TRACE": "TRACE",
+      }
+    `);
+  });
+});
